@@ -12,7 +12,8 @@ class WeatherService
     public function getWeatherInfo($city): Response
     {
         $apiKey = config('weather.openWeatherAPI');
-        return Http::get("api.openweathermap.org/data/2.5/weather?units=metric&lang=ua&appid=$apiKey&q=$city");
+        $apiLink = config('weather.apiLink');
+        return Http::get("$apiLink?units=metric&lang=ua&appid=$apiKey&q=$city");
     }
 
     public function formatWeatherResponse(Response $weatherResponse)
